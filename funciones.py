@@ -75,3 +75,81 @@ def generar_tablero_sudoku()-> list:
         tablero.append(fila)
 
     return tablero
+
+def obtener_porcentaje(dificultad: str)-> float:
+    '''
+    Obtiene el porcentaje de celdas que tienen que ocultarse según la dificultad elegida.
+
+    Parámetros:\n
+    dificultad (str): Nivel de dificultad elegida (Fácil, Intermedio o Difícil)
+
+    Retorna:\n
+    float: Porcentaje de celdas a ocultar según el nivel de dificultad.
+    '''
+    porcentaje = 0
+    match dificultad:
+        case "Fácil":
+            porcentaje = 0.2
+        case "Intermedio":
+            porcentaje = 0.4
+        case "Difícil":
+            porcentaje = 0.6
+
+    return porcentaje
+
+def copiar_tablero(tablero: list)-> list:
+    '''
+    Crea una copia del tablero original para no modificarlo al ocultar valores.
+
+    Parámetros:\n 
+    tablero (list): El tablero de Sudoku completo (9x9) con todos los números visibles
+
+    Retorna:\n 
+    list: una nueva lista con las mismas filas y valores del tablero original.
+    '''
+    copia = []
+    for fila in tablero:
+        copia.append(fila[:])
+
+    return copia
+
+def ocultar_celdas(tablero: list, cantidad: int)-> list:
+    '''
+    Oculta la cantidad de celdas aleatorias del tablero, reemplazandolas por strings vacios.
+
+    Parámetros:\n
+    tablero (list): Tablero en el que se van a ocultar valores.
+    cantidad (int): Cantidad de celdas que deben ocultarse.
+
+    Retorna:\n
+    list: El tablero con la cantidad de celdas ocultas.
+    '''
+    ocultadas = 0
+    while ocultadas < cantidad:
+        fila = random.randint(0,8)
+        columna = random.randint(0,8)
+        if tablero[fila][columna] != " ":
+            tablero[fila][columna] = " "
+            ocultadas += 1
+
+    return tablero
+
+def ocultar_numeros(tablero: list, dificultad: str)-> list:
+    '''
+    Genera un nuevo tablero con ciertos valores ocultos dependiendo de la dificultad.
+
+    Parámetros:\n 
+    tablero (list): El tablero de Sudoku completo con todos los valores visibles.
+    dificultad (str): Nivel de dificultad elegido (Fácil, Intermedio o Difícil).
+
+    Retorna:\n
+    list: Un nuevo tablero con los números ocultos según la dificultad.
+    '''
+    porcentaje = obtener_porcentaje(dificultad)
+    copia = copiar_tablero(tablero)
+    total = 81
+    cantidad = int(total * porcentaje)
+
+    tablero_oculto = ocultar_celdas(copia, cantidad)
+    
+    return tablero_oculto
