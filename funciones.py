@@ -153,3 +153,31 @@ def ocultar_numeros(tablero: list, dificultad: str)-> list:
     tablero_oculto = ocultar_celdas(copia, cantidad)
     
     return tablero_oculto
+
+def calcular_puntaje(dificultad: str, errores: int, tiempo: int)-> int:
+    '''
+    Calcula el puntaje del jugador mediante la dificultad seleccionada, sus errores y tiempo.
+
+    Parametros:
+    dificultad(str): Facil, Intermedio o Dificil
+    errores(int): cantidad de errores cometidos
+    tiempo(int): tiempo que tardó el jugador
+
+    Retorna:
+    int: El puntaje calculado.
+    '''
+    base = 1000
+
+    match dificultad:
+        case "Fácil":
+            base *= 1
+        case "Intermedio":
+            base *= 1.5
+        case "Difícil":
+            base *= 2
+
+    resta_errores = errores * 50
+    resta_tiempo = tiempo // 10
+    puntaje = base - resta_errores - resta_tiempo
+    max(0, int(puntaje))
+    
