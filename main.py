@@ -1,7 +1,14 @@
 import pygame
 
 pygame.init()
-pantalla = pygame.display.set_mode((1200, 900))
+
+icono = pygame.image.load("icon.png")
+pygame.display.set_icon(icono)
+
+ancho = 1200
+alto = 900
+
+pantalla = pygame.display.set_mode((ancho, alto))
 pygame.display.set_caption("Sudoku")
 
 pantalla_actual = 1
