@@ -179,5 +179,5 @@ def calcular_puntaje(dificultad: str, errores: int, tiempo: int)-> int:
     resta_errores = errores * 50
     resta_tiempo = tiempo // 10
     puntaje = base - resta_errores - resta_tiempo
-    max(0, int(puntaje))
+    return max(0, int(puntaje))
     
