@@ -9,7 +9,7 @@ info = pygame.display.Info()
 ancho_pantalla = info.current_w
 alto_pantalla = info.current_h
 
-screen = pygame.display.set_mode((int(ancho_pantalla * 0.8), int(alto_pantalla * 0.8)))
+pantalla = pygame.display.set_mode((int(ancho_pantalla * 0.8), int(alto_pantalla * 0.8)))
 
 pygame.display.set_caption("Sudoku")
 
