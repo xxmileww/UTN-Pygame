@@ -31,4 +31,6 @@ while ejecutando:
                 pygame.quit()
                 quit()
 
+fuente = pygame.font.SysFont("Arial", 40)
+
 pygame.display.flip()
