@@ -11,7 +11,8 @@ alto_pantalla = info.current_h
 ancho_ventana = int(ancho_pantalla * 0.8)
 alto_ventana = int(alto_pantalla * 0.8)
 
-fuente = pygame.font.SysFont("Calibri", 40)
+fuente_botones = pygame.font.SysFont("Arial", 40)
+fuente_titulo = pygame.font.SysFont("Bauhaus 93", 130)
 
 pantalla = pygame.display.set_mode((ancho_ventana, alto_ventana))
 
@@ -22,13 +23,19 @@ pantalla_actual = 1
 porcentaje_fondo = 100
 
 color_fondo = (172, 203, 225)
+color_fuente = (40, 62, 99)
+
 
 musica_fondo = "musica.mp3"
 pygame.mixer.music.load(musica_fondo)
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1)
 
-boton_jugar = pygame.Rect(ancho_ventana // 2 - 100, alto_ventana // 2 - 60, 200, 60)
+alto_botones = 80
+ancho_botones = 250
+
+boton_jugar = pygame.Rect(ancho_pantalla * 0.33, alto_pantalla * 0.28, ancho_botones, alto_botones) 
+# boton_quitar = pygame.Rect()
 
 ejecutando = True
 while ejecutando:
@@ -38,9 +45,11 @@ while ejecutando:
                 pygame.quit()
                 quit()
         pygame.draw.rect(pantalla, (87, 137, 173), boton_jugar, 2)
-        texto = fuente.render("Jugar", True, (23, 38, 48))
-        pantalla.blit(texto, (boton_jugar.x + 55, boton_jugar.y + 10))
+        titulo = fuente_titulo.render("Sudoku", True, color_fuente)
+        jugar = fuente_botones.render("Jugar", True, color_fuente)
+        pantalla.blit(titulo, (ancho_pantalla * 0.28, alto_pantalla * 0.07))
+        pantalla.blit(jugar, (boton_jugar.x + 85, boton_jugar.y + 15))
     pygame.display.flip()
     pantalla.fill(color_fondo)
     
-    
+
