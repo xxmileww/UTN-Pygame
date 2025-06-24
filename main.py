@@ -22,6 +22,9 @@ pantalla_actual = 1
 porcentaje_fondo = 100
 
 color_fondo = (172, 203, 225)
+color_boton = (103, 170, 214)
+color_borde = (87, 137, 173)
+color_texto = (23, 38, 48)
 
 musica_fondo = "musica.mp3"
 pygame.mixer.music.load(musica_fondo)
@@ -37,8 +40,9 @@ while ejecutando:
             if evento.type == pygame.QUIT: 
                 pygame.quit()
                 quit()
-        pygame.draw.rect(pantalla, (87, 137, 173), boton_jugar, 2)
-        texto = fuente.render("Jugar", True, (23, 38, 48))
+        pygame.draw.rect(pantalla, (color_boton), boton_jugar)
+        pygame.draw.rect(pantalla, (color_borde), boton_jugar, 2)
+        texto = fuente.render("Jugar", True, (color_texto))
         pantalla.blit(texto, (boton_jugar.x + 55, boton_jugar.y + 10))
     pygame.display.flip()
     pantalla.fill(color_fondo)
