@@ -18,19 +18,22 @@ def es_repetido(valor: int, lista: list)-> bool:
     
     return repetido
 
-def mezclar_lista_original()-> list:
+def mezclar_lista_original(lista_original: list)-> list:
     '''
     Genera una lista con los números del 1 al 9 mezclados sin repeticiones.
+
+    Parámetros:\n
+    lista_original (list): Lista originar a ser mezclada.
 
     Retorna:\n
     list: Lista mezclada de números del 1 al 9 sin repeticiones.
     '''
-    numeros_originales = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    lista_original = lista_original
     lista_mezclada = []
 
-    while len(lista_mezclada) < 9:
-        indice = random.randint(0, 8)
-        numero = numeros_originales[indice]
+    while len(lista_mezclada) < len(lista_original):
+        indice = random.randint(0, len(lista_original) - 1)
+        numero = lista_original[indice]
 
         if es_repetido(numero, lista_mezclada) == False:
             lista_mezclada.append(numero)
@@ -54,14 +57,15 @@ def rotar(lista: list, posiciones: int)-> list:
 
     return nueva
 
-def generar_tablero_sudoku()-> list:
+def generar_tablero_sudoku(lista_original: list)-> list:
     '''
     Genera un tablero de Sudoku completo de 9x9 basado en una fila base que es rotada.
 
     Retorna:\n
     list: Matriz de 9 listas (filas) que representan el Sudoku.
     '''
-    base = mezclar_lista_original()
+    lista_original = lista_original
+    base = mezclar_lista_original(lista_original)
     tablero = []
 
     for i in range(9):
