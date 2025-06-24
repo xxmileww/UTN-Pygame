@@ -31,7 +31,7 @@ pygame.mixer.music.load(musica_fondo)
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1)
 
-boton_jugar = pygame.Rect(ancho_ventana // 2 - 100, alto_ventana // 2 - 60, 200, 60)
+boton_jugar = pygame.Rect(ancho_ventana // 2 - 100, alto_ventana // 2 - 60, 250, 60)
 
 ejecutando = True
 while ejecutando:
@@ -43,7 +43,7 @@ while ejecutando:
         pygame.draw.rect(pantalla, (color_boton), boton_jugar)
         pygame.draw.rect(pantalla, (color_borde), boton_jugar, 2)
         texto = fuente.render("Jugar", True, (color_texto))
-        pantalla.blit(texto, (boton_jugar.x + 55, boton_jugar.y + 10))
+        pantalla.blit(texto, (boton_jugar.x + 85, boton_jugar.y + 10))
     pygame.display.flip()
     pantalla.fill(color_fondo)
     
