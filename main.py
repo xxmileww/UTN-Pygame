@@ -15,6 +15,10 @@ pygame.display.set_caption("Sudoku")
 
 pantalla_actual = 1
 
+porcentaje_fondo = 100
+
+color_fondo = (172, 203, 225)
+
 musica_fondo = "musica.mp3"
 pygame.mixer.music.load(musica_fondo)
 pygame.mixer.music.set_volume(0.2)
@@ -28,4 +32,7 @@ while ejecutando:
                 pygame.quit()
                 quit()
 
-pygame.display.flip()
+    pantalla.fill(color_fondo)
+    
+    
+    pygame.display.flip()
