@@ -11,6 +11,9 @@ alto_pantalla = info.current_h
 
 pantalla = pygame.display.set_mode((int(ancho_pantalla * 0.8), int(alto_pantalla * 0.8)))
 
+imagen_fondo = pygame.image.load("fondo.jpg")
+imagen_fondo = pygame.transform.scale(imagen_fondo, (ancho_pantalla, alto_pantalla))
+
 pygame.display.set_caption("Sudoku")
 
 pantalla_actual = 1
