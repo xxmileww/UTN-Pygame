@@ -20,13 +20,13 @@ def es_repetido(valor: int, lista: list)-> bool:
 
 def mezclar_lista_original(lista_original: list)-> list:
     '''
-    Genera una lista con los números del 1 al 9 mezclados sin repeticiones.
+    Genera una lista con los números de una lista original mezclados sin repeticiones.
 
     Parámetros:\n
     lista_original (list): Lista originar a ser mezclada.
 
     Retorna:\n
-    list: Lista mezclada de números del 1 al 9 sin repeticiones.
+    list: Lista mezclada de números sin repeticiones.
     '''
     lista_original = lista_original
     lista_mezclada = []
@@ -61,6 +61,9 @@ def generar_tablero_sudoku(lista_original: list)-> list:
     '''
     Genera un tablero de Sudoku completo de 9x9 basado en una fila base que es rotada.
 
+    Parámetros:\n
+    lista_original (list): Lista de números a usar en el tablero de sudoku.
+
     Retorna:\n
     list: Matriz de 9 listas (filas) que representan el Sudoku.
     '''
@@ -85,7 +88,7 @@ def obtener_porcentaje(dificultad: str)-> float:
     Obtiene el porcentaje de celdas que tienen que ocultarse según la dificultad elegida.
 
     Parámetros:\n
-    dificultad (str): Nivel de dificultad elegida (Fácil, Intermedio o Difícil)
+    dificultad (str): Nivel de dificultad elegida (Fácil, Intermedio o Difícil).
 
     Retorna:\n
     float: Porcentaje de celdas a ocultar según el nivel de dificultad.
@@ -106,7 +109,7 @@ def copiar_tablero(tablero: list)-> list:
     Crea una copia del tablero original para no modificarlo al ocultar valores.
 
     Parámetros:\n 
-    tablero (list): El tablero de Sudoku completo (9x9) con todos los números visibles
+    tablero (list): El tablero de Sudoku completo (9x9) con todos los números visibles.
 
     Retorna:\n 
     list: una nueva lista con las mismas filas y valores del tablero original.
@@ -160,15 +163,15 @@ def ocultar_numeros(tablero: list, dificultad: str)-> list:
 
 def calcular_puntaje(dificultad: str, errores: int, tiempo: int)-> int:
     '''
-    Calcula el puntaje del jugador mediante la dificultad seleccionada, sus errores y tiempo.
+    Calcula el puntaje del jugador basándose en la dificultad seleccionada, los errores que tuvo y el tiempo que le tomo.
 
-    Parametros:
-    dificultad(str): Facil, Intermedio o Dificil
-    errores(int): cantidad de errores cometidos
-    tiempo(int): tiempo que tardó el jugador
+    Parametros:\n
+    dificultad (str): Nivel de dificultad elegido (Fácil, Intermedio o Difícil).
+    errores (int): Cantidad de errores cometidos.
+    tiempo (int): Tiempo que tardó el jugador.
 
-    Retorna:
-    int: El puntaje calculado.
+    Retorna:\n
+    int: El puntaje total calculado.
     '''
     base = 1000
 
