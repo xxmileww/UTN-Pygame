@@ -47,6 +47,7 @@ while ejecutando:
                 pygame.quit()
                 quit()
         pygame.draw.rect(pantalla, (87, 137, 173), boton_jugar, 2)
+        pygame.draw.rect(pantalla, (87, 137, 173), boton_ajustes, 2)
         titulo = fuente_titulo.render("Sudoku", True, color_fuente)
         jugar = fuente_botones.render("Jugar", True, color_fuente)
         ajustes = fuente_botones.render("Ajustes", True, color_fuente)
@@ -56,4 +57,3 @@ while ejecutando:
     pygame.display.flip()
     pantalla.fill(color_fondo)
     
-
