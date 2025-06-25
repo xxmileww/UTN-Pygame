@@ -188,5 +188,3 @@ def calcular_puntaje(dificultad: str, errores: int, tiempo: int)-> int:
     puntaje = base - resta_errores - resta_tiempo
     return max(0, int(puntaje))
     
-
-# def primer_pantalla(boton_1: Rect, boton_2: Rect, boton_3: Rect, boton_4: Rect, titulo:  ):
