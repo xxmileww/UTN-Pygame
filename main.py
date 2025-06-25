@@ -14,7 +14,8 @@ alto_ventana = int(alto_pantalla * 0.8)
 
 fuente_botones = pygame.font.SysFont("Arial Rounded MT", 40)
 fuente_titulo = pygame.font.SysFont("Bauhaus 93", 130)
-fuente_textos = pygame.font.SysFont("Arial Rounded MT", 300)
+fuente_textos = pygame.font.SysFont("Arial Rounded MT", 100)
+fuente_aviso = pygame.font.SysFont("Arial Rounded MT", 30)
 
 pantalla = pygame.display.set_mode((ancho_ventana, alto_ventana))
 
@@ -105,15 +106,17 @@ while ejecutando:
         rec_intermedio = pygame.draw.rect(pantalla, color_botones, boton_intermedio, border_radius = 25)
         rec_dificil = pygame.draw.rect(pantalla, color_botones, boton_dificil, border_radius = 25)
 
-        dificultad = fuente_botones.render("Seleccione la difícultad", True, color_fuente)
+        dificultad = fuente_textos.render("Seleccione la difícultad", True, color_fuente)
         facil = fuente_botones.render("Fácil", True, color_fuente)
         intermedio = fuente_botones.render("Intermedio", True, color_fuente)
         dificil = fuente_botones.render("Difícil", True, color_fuente)
+        aviso = fuente_aviso.render("Presione esc si desea volver atras", True, color_fuente)
 
-        pantalla.blit(dificultad, (ancho_pantalla * 0.30, alto_pantalla * 0.18))
+        pantalla.blit(dificultad, (ancho_pantalla * 0.16, alto_pantalla * 0.18))
         pantalla.blit(facil, (boton_facil.x + 90, boton_facil.y + 30))
         pantalla.blit(intermedio, (boton_intermedio.x + 53, boton_intermedio.y + 30))
         pantalla.blit(dificil, (boton_dificil.x + 90, boton_dificil.y + 30))
+        pantalla.blit(aviso, (ancho_pantalla * 0.02, alto_pantalla * 0.70))
     
     elif pantalla_actual == 3:
         for evento in pygame.event.get():
