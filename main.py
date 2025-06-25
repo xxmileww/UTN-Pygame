@@ -1,5 +1,5 @@
-import pygame
 from funciones import *
+import pygame
 
 pygame.init()
 
@@ -56,7 +56,7 @@ while ejecutando:
 
         pantalla.fill(color_fondo)
         rec_jugar = pygame.draw.rect(pantalla, color_botones, boton_jugar, border_radius = 25) 
-        pygame.draw.rect(pantalla, color_botones, boton_jugar, 2, border_radius = 25) 
+
         pygame.draw.rect(pantalla, color_botones, boton_ajustes, border_radius = 25 ) 
         pygame.draw.rect(pantalla, color_botones, boton_ajustes, 2, border_radius = 25)
         pygame.draw.rect(pantalla, color_botones, boton_puntaje, border_radius = 25)
