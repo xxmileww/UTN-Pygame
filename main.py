@@ -38,6 +38,7 @@ espacio_botones = 20
 boton_jugar = pygame.Rect(ancho_pantalla * 0.33, alto_pantalla * 0.28, ancho_botones, alto_botones) 
 boton_ajustes = pygame.Rect(boton_jugar.x, boton_jugar.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
 boton_puntaje = pygame.Rect(boton_ajustes.x, boton_ajustes.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
+boton_salir = pygame.Rect(boton_ajustes.x, boton_puntaje.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
 # boton_quitar = pygame.Rect()
 
 ejecutando = True
@@ -51,15 +52,20 @@ while ejecutando:
         pygame.draw.rect(pantalla, (87, 137, 173), boton_jugar, 2) 
         pygame.draw.rect(pantalla, (111, 172, 217), boton_ajustes) 
         pygame.draw.rect(pantalla, (87, 137, 173), boton_ajustes, 2)
+        pygame.draw.rect(pantalla,(111, 172, 217), boton_puntaje)
         pygame.draw.rect(pantalla,(87, 137, 173), boton_puntaje, 2)
+        pygame.draw.rect(pantalla,(111, 172, 217), boton_salir)
+        pygame.draw.rect(pantalla,(87, 137, 173), boton_salir, 2)
         titulo = fuente_titulo.render("Sudoku", True, color_fuente)
         jugar = fuente_botones.render("Jugar", True, color_fuente)
         ajustes = fuente_botones.render("Ajustes", True, color_fuente)
         puntaje = fuente_botones.render("Puntaje", True, color_fuente)
+        salir = fuente_botones.render("Salir", True, color_fuente)
         pantalla.blit(titulo, (ancho_pantalla * 0.28, alto_pantalla * 0.07))
         pantalla.blit(jugar, (boton_jugar.x + 85, boton_jugar.y + 15))
         pantalla.blit(ajustes, (boton_ajustes.x + 75, boton_ajustes.y + 15))
         pantalla.blit(puntaje, (boton_puntaje.x + 75, boton_puntaje.y + 15))
+        pantalla.blit(salir, (boton_salir.x + 85, boton_salir.y + 15))
     pygame.display.flip()
     pantalla.fill(color_fondo)
     
