@@ -127,6 +127,9 @@ while ejecutando:
                 if evento.key == pygame.K_ESCAPE:
                     pantalla_actual = 1
 
+        aviso = fuente_aviso.render("Presione esc si desea volver atras", True, color_fuente)
+        pantalla.blit(aviso, (ancho_pantalla * 0.02, alto_pantalla * 0.70))
+
 
     elif pantalla_actual == 4:
         for evento in pygame.event.get():
@@ -136,6 +139,9 @@ while ejecutando:
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
                     pantalla_actual = 1
+
+        aviso = fuente_aviso.render("Presione esc si desea volver atras", True, color_fuente)
+        pantalla.blit(aviso, (ancho_pantalla * 0.02, alto_pantalla * 0.70))
 
     pygame.display.flip()
     
