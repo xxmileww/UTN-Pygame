@@ -33,8 +33,10 @@ pygame.mixer.music.play(-1)
 
 alto_botones = 80
 ancho_botones = 250
+espacio_botones = 20
 
 boton_jugar = pygame.Rect(ancho_pantalla * 0.33, alto_pantalla * 0.28, ancho_botones, alto_botones) 
+boton_ajustes = pygame.Rect(boton_jugar.x, boton_jugar.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
 # boton_quitar = pygame.Rect()
 
 ejecutando = True
@@ -49,6 +51,7 @@ while ejecutando:
         jugar = fuente_botones.render("Jugar", True, color_fuente)
         pantalla.blit(titulo, (ancho_pantalla * 0.28, alto_pantalla * 0.07))
         pantalla.blit(jugar, (boton_jugar.x + 85, boton_jugar.y + 15))
+        pantalla.blit(ajustes, (boton_ajustes.x + 75, boton_ajustes.y + 15))
     pygame.display.flip()
     pantalla.fill(color_fondo)
     
