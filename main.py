@@ -49,6 +49,7 @@ while ejecutando:
         pygame.draw.rect(pantalla, (87, 137, 173), boton_jugar, 2)
         titulo = fuente_titulo.render("Sudoku", True, color_fuente)
         jugar = fuente_botones.render("Jugar", True, color_fuente)
+        ajustes = fuente_botones.render("Ajustes", True, color_fuente)
         pantalla.blit(titulo, (ancho_pantalla * 0.28, alto_pantalla * 0.07))
         pantalla.blit(jugar, (boton_jugar.x + 85, boton_jugar.y + 15))
         pantalla.blit(ajustes, (boton_ajustes.x + 75, boton_ajustes.y + 15))
