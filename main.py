@@ -38,12 +38,8 @@ espacio_botones = 20
 boton_jugar = pygame.Rect(ancho_pantalla * 0.33, alto_pantalla * 0.28, ancho_botones, alto_botones) 
 boton_ajustes = pygame.Rect(boton_jugar.x, boton_jugar.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
 boton_puntaje = pygame.Rect(boton_ajustes.x, boton_ajustes.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
-<<<<<<< HEAD
-
-=======
 boton_salir = pygame.Rect(boton_ajustes.x, boton_puntaje.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
-# boton_quitar = pygame.Rect()
->>>>>>> ac86d33b07ee373218ae9264fbb350ae3d156af2
+
 
 ejecutando = True
 while ejecutando:
@@ -69,7 +65,7 @@ while ejecutando:
         pantalla.blit(jugar, (boton_jugar.x + 85, boton_jugar.y + 15))
         pantalla.blit(ajustes, (boton_ajustes.x + 75, boton_ajustes.y + 15))
         pantalla.blit(puntaje, (boton_puntaje.x + 75, boton_puntaje.y + 15))
-        pantalla.blit(salir, (boton_salir.x + 85, boton_salir.y + 15))
+        pantalla.blit(salir, (boton_salir.x + 95, boton_salir.y + 15))
     pygame.display.flip()
     pantalla.fill(color_fondo)
     
