@@ -1,4 +1,5 @@
 import pygame
+from funciones import *
 
 pygame.init()
 
@@ -24,6 +25,7 @@ porcentaje_fondo = 100
 
 color_fondo = (172, 203, 225)
 color_fuente = (40, 62, 99)
+color_botones = (206, 226, 242)
 
 
 musica_fondo = "musica.mp3"
@@ -48,14 +50,19 @@ while ejecutando:
             if evento.type == pygame.QUIT: 
                 pygame.quit()
                 quit()
-        pygame.draw.rect(pantalla, (111, 172, 217), boton_jugar) 
-        pygame.draw.rect(pantalla, (87, 137, 173), boton_jugar, 2) 
-        pygame.draw.rect(pantalla, (111, 172, 217), boton_ajustes) 
-        pygame.draw.rect(pantalla, (87, 137, 173), boton_ajustes, 2)
-        pygame.draw.rect(pantalla,(111, 172, 217), boton_puntaje)
-        pygame.draw.rect(pantalla,(87, 137, 173), boton_puntaje, 2)
-        pygame.draw.rect(pantalla,(111, 172, 217), boton_salir)
-        pygame.draw.rect(pantalla,(87, 137, 173), boton_salir, 2)
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                if rec_jugar.collidepoint(evento.pos):
+                    print("Hice click en jugar")
+
+        pantalla.fill(color_fondo)
+        rec_jugar = pygame.draw.rect(pantalla, color_botones, boton_jugar, border_radius = 25) 
+        pygame.draw.rect(pantalla, color_botones, boton_jugar, 2, border_radius = 25) 
+        pygame.draw.rect(pantalla, color_botones, boton_ajustes, border_radius = 25 ) 
+        pygame.draw.rect(pantalla, color_botones, boton_ajustes, 2, border_radius = 25)
+        pygame.draw.rect(pantalla, color_botones, boton_puntaje, border_radius = 25)
+        pygame.draw.rect(pantalla, color_botones, boton_puntaje, 2, border_radius = 25)
+        pygame.draw.rect(pantalla, color_botones, boton_salir, border_radius = 25)
+        pygame.draw.rect(pantalla, color_botones, boton_salir, 2, border_radius = 25)
         titulo = fuente_titulo.render("Sudoku", True, color_fuente)
         jugar = fuente_botones.render("Jugar", True, color_fuente)
         ajustes = fuente_botones.render("Ajustes", True, color_fuente)
@@ -66,6 +73,6 @@ while ejecutando:
         pantalla.blit(ajustes, (boton_ajustes.x + 75, boton_ajustes.y + 15))
         pantalla.blit(puntaje, (boton_puntaje.x + 75, boton_puntaje.y + 15))
         pantalla.blit(salir, (boton_salir.x + 95, boton_salir.y + 15))
+    
     pygame.display.flip()
-    pantalla.fill(color_fondo)
     
