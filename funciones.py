@@ -1,4 +1,7 @@
 import random
+import pygame
+from pygame import Rect, Surface
+from pygame.font import Font
 
 def es_repetido(valor: int, lista: list)-> bool:
     '''
@@ -188,3 +191,23 @@ def calcular_puntaje(dificultad: str, errores: int, tiempo: int)-> int:
     puntaje = base - resta_errores - resta_tiempo
     return max(0, int(puntaje))
     
+def pantalla_inicio(pantalla: Surface, color_botones: tuple, color_fuente: tuple, fuente_titulo: Font, fuente_botones: Font, ancho_pantalla: int, alto_pantalla: int, boton_jugar: Rect, boton_ajustes: Rect, boton_puntaje: Rect, boton_salir: Rect) -> Rect:
+
+    rec_jugar = pygame.draw.rect(pantalla, color_botones, boton_jugar, border_radius = 25) 
+    rec_ajustes = pygame.draw.rect(pantalla, color_botones, boton_ajustes, border_radius = 25 ) 
+    rec_puntaje = pygame.draw.rect(pantalla, color_botones, boton_puntaje, border_radius = 25)
+    rec_salir = pygame.draw.rect(pantalla, color_botones, boton_salir, border_radius = 25)
+
+    titulo = fuente_titulo.render("Sudoku", True, color_fuente)
+    jugar = fuente_botones.render("Jugar", True, color_fuente)
+    ajustes = fuente_botones.render("Ajustes", True, color_fuente)
+    puntaje = fuente_botones.render("Puntaje", True, color_fuente)
+    salir = fuente_botones.render("Salir", True, color_fuente)
+
+    pantalla.blit(titulo, (ancho_pantalla * 0.28, alto_pantalla * 0.07))
+    pantalla.blit(jugar, (boton_jugar.x + 90, boton_jugar.y + 25))
+    pantalla.blit(ajustes, (boton_ajustes.x + 80, boton_ajustes.y + 25))
+    pantalla.blit(puntaje, (boton_puntaje.x + 80, boton_puntaje.y + 25))
+    pantalla.blit(salir, (boton_salir.x + 100, boton_salir.y + 25))
+
+    return rec_jugar, rec_ajustes, rec_puntaje, rec_salir
