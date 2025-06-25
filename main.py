@@ -47,7 +47,9 @@ while ejecutando:
             if evento.type == pygame.QUIT: 
                 pygame.quit()
                 quit()
-        pygame.draw.rect(pantalla, (87, 137, 173), boton_jugar, 2)
+        pygame.draw.rect(pantalla, (111, 172, 217), boton_jugar) 
+        pygame.draw.rect(pantalla, (87, 137, 173), boton_jugar, 2) 
+        pygame.draw.rect(pantalla, (111, 172, 217), boton_ajustes) 
         pygame.draw.rect(pantalla, (87, 137, 173), boton_ajustes, 2)
         pygame.draw.rect(pantalla,(87, 137, 173), boton_puntaje, 2)
         titulo = fuente_titulo.render("Sudoku", True, color_fuente)
