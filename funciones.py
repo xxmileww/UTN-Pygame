@@ -211,3 +211,24 @@ def pantalla_inicio(pantalla: Surface, color_botones: tuple, color_fuente: tuple
     pantalla.blit(salir, (boton_salir.x + 100, boton_salir.y + 25))
 
     return rec_jugar, rec_ajustes, rec_puntaje, rec_salir
+
+def pantalla_dificultad(pantalla: Surface, color_botones: tuple, color_fuente: tuple, fuente_botones: Font, ancho_pantalla: int, alto_pantalla: int, boton_facil: Rect, boton_intermedio: Rect, boton_dificil: Rect, fuente_textos: Font, fuente_aviso: Font) -> Rect:
+        
+        
+        rec_facil = pygame.draw.rect(pantalla, color_botones, boton_facil, border_radius =  25)
+        rec_intermedio = pygame.draw.rect(pantalla, color_botones, boton_intermedio, border_radius = 25)
+        rec_dificil = pygame.draw.rect(pantalla, color_botones, boton_dificil, border_radius = 25)
+
+        dificultad = fuente_textos.render("Seleccione la difícultad", True, color_fuente)
+        facil = fuente_botones.render("Fácil", True, color_fuente)
+        intermedio = fuente_botones.render("Intermedio", True, color_fuente)
+        dificil = fuente_botones.render("Difícil", True, color_fuente)
+        aviso = fuente_aviso.render("Presione esc si desea volver atras", True, color_fuente)
+
+        pantalla.blit(dificultad, (ancho_pantalla * 0.16, alto_pantalla * 0.18))
+        pantalla.blit(facil, (boton_facil.x + 90, boton_facil.y + 30))
+        pantalla.blit(intermedio, (boton_intermedio.x + 53, boton_intermedio.y + 30))
+        pantalla.blit(dificil, (boton_dificil.x + 90, boton_dificil.y + 30))
+        pantalla.blit(aviso, (ancho_pantalla * 0.02, alto_pantalla * 0.70))
+
+        return rec_facil, rec_intermedio, rec_dificil
