@@ -16,6 +16,7 @@ fuente_botones = pygame.font.SysFont("Arial Rounded MT", 40)
 fuente_titulo = pygame.font.SysFont("Bauhaus 93", 130)
 fuente_textos = pygame.font.SysFont("Arial Rounded MT", 100)
 fuente_aviso = pygame.font.SysFont("Arial Rounded MT", 30)
+fuente_timer = pygame.font.SysFont("Arial Rounded MT", 50)
 
 pantalla = pygame.display.set_mode((ancho_ventana, alto_ventana))
 
@@ -47,6 +48,11 @@ boton_salir = pygame.Rect(boton_ajustes.x, boton_puntaje.y + alto_botones + espa
 boton_facil = pygame.Rect(ancho_pantalla * 0.10, alto_pantalla * 0.35, ancho_botones, alto_botones)
 boton_intermedio = pygame.Rect(ancho_pantalla * 0.32, boton_facil.y, ancho_botones, alto_botones)
 boton_dificil = pygame.Rect(ancho_pantalla * 0.55, boton_facil.y, ancho_botones, alto_botones)
+
+
+evento_timer = pygame.USEREVENT + 1
+pygame.time.set_timer(evento_timer, 1000)  
+
 
 ejecutando = True
 while ejecutando:
@@ -83,12 +89,15 @@ while ejecutando:
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 if rec_facil.collidepoint(evento.pos):
                     dificultad_actual = "Fácil"
+                    tiempo_juego = 0
                     pantalla_actual = 5
                 elif rec_intermedio.collidepoint(evento.pos):
                     dificultad_actual = "Intermedio"
+                    tiempo_juego = 0
                     pantalla_actual = 5
                 elif rec_dificil.collidepoint(evento.pos):
                     dificultad_actual = "Difícil"
+                    tiempo_juego = 0
                     pantalla_actual = 5
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
@@ -118,15 +127,22 @@ while ejecutando:
 
         aviso = fuente_aviso.render("Presione esc si desea volver atras", True, color_fuente)
         pantalla.blit(aviso, (ancho_pantalla * 0.02, alto_pantalla * 0.70))
-
+    
     elif pantalla_actual == 5:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-        if evento.type == pygame.KEYDOWN:
-            if evento.key == pygame.K_ESCAPE:
-                pantalla_actual = 2  
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_ESCAPE:
+                    pantalla_actual = 2 
+            if evento.type == evento_timer:
+                tiempo_juego += 1
+        minutos = tiempo_juego // 60
+        segundos = tiempo_juego % 60
+        texto_timer = fuente_timer.render(f"Tiempo: {minutos:02}:{segundos:02}", True, color_fuente)
+        pantalla.blit(texto_timer, (ancho_ventana - 550, 40))
 
     pygame.display.flip()
     
+
