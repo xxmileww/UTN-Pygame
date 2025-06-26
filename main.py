@@ -30,7 +30,6 @@ color_fondo = (172, 203, 225)
 color_fuente = (40, 62, 99)
 color_botones = (206, 226, 242)
 
-
 musica_fondo = "musica.mp3"
 pygame.mixer.music.load(musica_fondo)
 pygame.mixer.music.set_volume(0.2)
@@ -40,10 +39,16 @@ alto_botones = 80
 ancho_botones = 250
 espacio_botones = 20
 
+ancho_volver = 200
+alto_volver = 60
+x_volver = ancho_ventana - ancho_volver - 300  
+y_volver = alto_ventana - alto_volver - 60    
+
 boton_jugar = pygame.Rect(ancho_pantalla * 0.33, alto_pantalla * 0.28, ancho_botones, alto_botones) 
 boton_ajustes = pygame.Rect(boton_jugar.x, boton_jugar.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
 boton_puntaje = pygame.Rect(boton_ajustes.x, boton_ajustes.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
 boton_salir = pygame.Rect(boton_ajustes.x, boton_puntaje.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
+boton_volver = pygame.Rect(x_volver, y_volver, ancho_volver, alto_volver)
 
 boton_facil = pygame.Rect(ancho_pantalla * 0.10, alto_pantalla * 0.35, ancho_botones, alto_botones)
 boton_intermedio = pygame.Rect(ancho_pantalla * 0.32, boton_facil.y, ancho_botones, alto_botones)
@@ -133,15 +138,18 @@ while ejecutando:
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-            if evento.type == pygame.KEYDOWN:
-                if evento.key == pygame.K_ESCAPE:
-                    pantalla_actual = 2 
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                if boton_volver.collidepoint(evento.pos):
+                    pantalla_actual = 1
             if evento.type == evento_timer:
                 tiempo_juego += 1
         minutos = tiempo_juego // 60
         segundos = tiempo_juego % 60
         texto_timer = fuente_timer.render(f"Tiempo: {minutos:02}:{segundos:02}", True, color_fuente)
         pantalla.blit(texto_timer, (ancho_ventana - 550, 40))
+        pygame.draw.rect(pantalla, color_botones, boton_volver, border_radius=20)
+        texto_volver = fuente_botones.render("Volver", True, color_fuente)
+        pantalla.blit(texto_volver, (boton_volver.x + 55, boton_volver.y + 20))
 
     pygame.display.flip()
     
