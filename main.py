@@ -80,10 +80,19 @@ while ejecutando:
             if evento.type == pygame.QUIT: 
                 pygame.quit()
                 quit()
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                if rec_facil.collidepoint(evento.pos):
+                    dificultad_actual = "Fácil"
+                    pantalla_actual = 5
+                elif rec_intermedio.collidepoint(evento.pos):
+                    dificultad_actual = "Intermedio"
+                    pantalla_actual = 5
+                elif rec_dificil.collidepoint(evento.pos):
+                    dificultad_actual = "Difícil"
+                    pantalla_actual = 5
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
                     pantalla_actual = 1
-
     
     elif pantalla_actual == 3:
         for evento in pygame.event.get():
@@ -109,6 +118,15 @@ while ejecutando:
 
         aviso = fuente_aviso.render("Presione esc si desea volver atras", True, color_fuente)
         pantalla.blit(aviso, (ancho_pantalla * 0.02, alto_pantalla * 0.70))
+
+    elif pantalla_actual == 5:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_ESCAPE:
+                pantalla_actual = 2  
 
     pygame.display.flip()
     
