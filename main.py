@@ -12,6 +12,9 @@ alto_pantalla = info.current_h
 ancho_ventana = int(ancho_pantalla * 0.8)
 alto_ventana = int(alto_pantalla * 0.8)
 
+fondo_imagen = pygame.image.load("fondo.png")
+fondo_imagen = pygame.transform.scale(fondo_imagen, (ancho_ventana, alto_ventana))
+
 fuente_botones = pygame.font.SysFont("Arial Rounded MT", 40)
 fuente_titulo = pygame.font.SysFont("Bauhaus 93", 130)
 fuente_textos = pygame.font.SysFont("Arial Rounded MT", 100)
@@ -28,19 +31,24 @@ porcentaje_fondo = 100
 
 color_fondo = (172, 203, 225)
 color_fuente = (40, 62, 99)
-color_botones = (206, 226, 242)
+color_botones = (149, 215, 245)
+
+errores = 0
+errores_maximos = 3
 
 musica_fondo = "musica.mp3"
 pygame.mixer.music.load(musica_fondo)
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play(-1)
+musica_activada = True
 
 alto_botones = 80
 ancho_botones = 250
 espacio_botones = 20
 
 ancho_volver = 200
-alto_volver = 60
+alto_volver = 60 
+
 x_volver = ancho_ventana - ancho_volver - 300  
 y_volver = alto_ventana - alto_volver - 60    
 
@@ -49,19 +57,19 @@ boton_ajustes = pygame.Rect(boton_jugar.x, boton_jugar.y + alto_botones + espaci
 boton_puntaje = pygame.Rect(boton_ajustes.x, boton_ajustes.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
 boton_salir = pygame.Rect(boton_ajustes.x, boton_puntaje.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
 boton_volver = pygame.Rect(x_volver, y_volver, ancho_volver, alto_volver)
+boton_cambiar_res = pygame.Rect(ancho_pantalla * 0.33, alto_pantalla * 0.28, ancho_botones, alto_botones)
+boton_musica = pygame.Rect(boton_cambiar_res.x, boton_cambiar_res.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
 
 boton_facil = pygame.Rect(ancho_pantalla * 0.10, alto_pantalla * 0.35, ancho_botones, alto_botones)
 boton_intermedio = pygame.Rect(ancho_pantalla * 0.32, boton_facil.y, ancho_botones, alto_botones)
 boton_dificil = pygame.Rect(ancho_pantalla * 0.55, boton_facil.y, ancho_botones, alto_botones)
 
-
 evento_timer = pygame.USEREVENT + 1
 pygame.time.set_timer(evento_timer, 1000)  
 
-
 ejecutando = True
 while ejecutando:
-    pantalla.fill(color_fondo)
+    pantalla.blit(fondo_imagen, (0, 0))
     if pantalla_actual == 1:
         rec_jugar, rec_ajustes, rec_puntaje, rec_salir = pantalla_inicio(pantalla,color_botones,color_fuente,fuente_titulo,fuente_botones,ancho_pantalla,alto_pantalla,boton_jugar,boton_ajustes,boton_puntaje,boton_salir)
         for evento in pygame.event.get():
@@ -117,6 +125,24 @@ while ejecutando:
                 if evento.key == pygame.K_ESCAPE:
                     pantalla_actual = 1
 
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                if boton_musica.collidepoint(evento.pos):
+                    if musica_activada:
+                        pygame.mixer.music.pause()
+                        musica_activada = False
+                    else:
+                        pygame.mixer.music.unpause()
+                        musica_activada = True
+        if musica_activada:
+            color_boton_musica = color_botones
+        else:
+            color_boton_musica = (255, 100, 100)
+        pygame.draw.rect(pantalla, color_boton_musica, boton_musica, border_radius=20)
+        texto_musica = fuente_botones.render("Música", True, color_fuente)
+        pantalla.blit(texto_musica, (boton_musica.x + 80, boton_musica.y + 20))
+        pygame.draw.rect(pantalla, color_botones, boton_cambiar_res, border_radius=20)
+        texto_res = fuente_botones.render("Resolución", True, color_fuente)
+        pantalla.blit(texto_res, (boton_cambiar_res.x + 50, boton_cambiar_res.y + 20))
         aviso = fuente_aviso.render("Presione esc si desea volver atras", True, color_fuente)
         pantalla.blit(aviso, (ancho_pantalla * 0.02, alto_pantalla * 0.70))
 
@@ -147,10 +173,11 @@ while ejecutando:
         segundos = tiempo_juego % 60
         texto_timer = fuente_timer.render(f"Tiempo: {minutos:02}:{segundos:02}", True, color_fuente)
         pantalla.blit(texto_timer, (ancho_ventana - 550, 40))
+        texto_errores = fuente_timer.render(f"Errores: {errores}/{errores_maximos}", True, color_fuente)
+        pantalla.blit(texto_errores, (ancho_ventana - 545, 100))
         pygame.draw.rect(pantalla, color_botones, boton_volver, border_radius=20)
         texto_volver = fuente_botones.render("Volver", True, color_fuente)
         pantalla.blit(texto_volver, (boton_volver.x + 55, boton_volver.y + 20))
 
     pygame.display.flip()
     
-
