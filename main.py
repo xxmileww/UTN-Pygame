@@ -113,7 +113,7 @@ while ejecutando:
             if evento.type == pygame.QUIT: 
                 pygame.quit()
                 quit()
-             if evento.type == pygame.MOUSEBUTTONDOWN:
+            if evento.type == pygame.MOUSEBUTTONDOWN:
                 lista_numeros = [1,2,3,4,5,6,7,8,9]
                 base_tablero = generar_tablero_sudoku (lista_numeros)
             
@@ -195,7 +195,10 @@ while ejecutando:
                     pantalla_actual = 1
             if evento.type == evento_timer:
                 tiempo_juego += 1
-                
+
+        dibujar_sudoku( pantalla,tablero_juego, x_tablero, y_tablero, tamaño_celda, grosor_borde, color_negro, color_negro, color_celda_vacia, fuente_numero) 
+
+        
         minutos = tiempo_juego // 60
         segundos = tiempo_juego % 60
         texto_timer = fuente_timer.render(f"Tiempo: {minutos:02}:{segundos:02}", True, color_fuente)
@@ -203,8 +206,7 @@ while ejecutando:
         texto_errores = fuente_timer.render(f"Errores: {errores}/{errores_maximos}", True, color_fuente)
         pantalla.blit(texto_errores, (ancho_ventana - 545, 100))
         
-        dibujar_sudoku( pantalla,tablero_juego, x_tablero, y_tablero, tamaño_celda, grosor_borde, color_negro, color_negro, color_celda_vacia, fuente_numero) 
-        
+ 
         pygame.draw.rect(pantalla, color_botones, boton_volver, border_radius=20)
         texto_volver = fuente_botones.render("Volver", True, color_fuente)
         pantalla.blit(texto_volver, (boton_volver.x + 55, boton_volver.y + 20))
