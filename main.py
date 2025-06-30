@@ -202,8 +202,6 @@ while ejecutando:
                 if boton_volver.collidepoint(evento.pos):
                     pantalla_actual = 1
                 elif boton_reinicio.collidepoint(evento.pos):
-                    lista_numeros = [1,2,3,4,5,6,7,8,9]
-                    base_tablero = generar_tablero_sudoku(lista_numeros)
                     tablero_juego = ocultar_numeros(base_tablero, dificultad_actual)
                     tiempo_juego = 0
                     errores = 0                          
