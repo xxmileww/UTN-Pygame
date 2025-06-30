@@ -53,6 +53,12 @@ alto_volver = 60
 x_volver = ancho_ventana - ancho_volver - 300  
 y_volver = alto_ventana - alto_volver - 60    
 
+ancho_reinicio = 245
+alto_reinicio = 60
+
+x_reinicio = ancho_ventana - ancho_reinicio - 600
+y_reinicio = alto_ventana - alto_reinicio - 50
+
 boton_jugar = pygame.Rect(ancho_pantalla * 0.33, alto_pantalla * 0.28, ancho_botones, alto_botones) 
 boton_ajustes = pygame.Rect(boton_jugar.x, boton_jugar.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
 boton_puntaje = pygame.Rect(boton_ajustes.x, boton_ajustes.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
@@ -60,6 +66,8 @@ boton_salir = pygame.Rect(boton_ajustes.x, boton_puntaje.y + alto_botones + espa
 boton_volver = pygame.Rect(x_volver, y_volver, ancho_volver, alto_volver)
 boton_cambiar_res = pygame.Rect(ancho_pantalla * 0.33, alto_pantalla * 0.28, ancho_botones, alto_botones)
 boton_musica = pygame.Rect(boton_cambiar_res.x, boton_cambiar_res.y + alto_botones + espacio_botones, ancho_botones, alto_botones)
+boton_reinicio = pygame.Rect(x_reinicio, y_reinicio, ancho_reinicio, alto_reinicio)
+
 
 boton_facil = pygame.Rect(ancho_pantalla * 0.10, alto_pantalla * 0.35, ancho_botones, alto_botones)
 boton_intermedio = pygame.Rect(ancho_pantalla * 0.32, boton_facil.y, ancho_botones, alto_botones)
@@ -210,6 +218,11 @@ while ejecutando:
         pygame.draw.rect(pantalla, color_botones, boton_volver, border_radius=20)
         texto_volver = fuente_botones.render("Volver", True, color_fuente)
         pantalla.blit(texto_volver, (boton_volver.x + 55, boton_volver.y + 20))
+
+        pygame.draw.rect(pantalla, color_botones, boton_reinicio, border_radius= 20)            
+        texto_reinicio = fuente_botones.render("reiniciar juego", True, color_fuente)
+        pantalla.blit(texto_reinicio, (boton_reinicio.x + 20, boton_reinicio.y +20))
+
 
     pygame.display.flip()
     
