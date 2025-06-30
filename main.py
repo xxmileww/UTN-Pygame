@@ -51,7 +51,7 @@ ancho_volver = 200
 alto_volver = 60 
 
 x_volver = ancho_ventana - ancho_volver - 300  
-y_volver = alto_ventana - alto_volver - 60    
+y_volver = alto_ventana - alto_volver - 50    
 
 ancho_reinicio = 245
 alto_reinicio = 60
