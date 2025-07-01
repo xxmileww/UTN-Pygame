@@ -193,10 +193,24 @@ def calcular_puntaje(dificultad: str, errores: int, tiempo: int)-> int:
     
 
 def dibujar_sudoku(pantalla: Surface, tablero: list, borde_x:int, borde_y: int ,tamaño_celda: int, grosor_linea:int, color_linea: tuple, color_celda: tuple, color_oculto: tuple,  fuente_num: Font):
-    """
-    Dibuja el tablero de Sudoku en pygame.(falta completar)
+        '''
+    Dibuja el tablero de Sudoku en pygame.
     
-    """
+    Parámetros:\n
+    lista_original (list): Lista de números a usar en el tablero de sudoku.
+    pantalla(Surface): pantalla de pygame donde se imprime el tablero.
+    tablero (list): llista donde muestar el tablero del sudoku.
+    borde_x (int): coordenada x del tablero del sudoku en pantalla.
+    borde_y (int): coordenada y del tablero del sudoku en pantalla.
+    tamaño_Celda(int): tamaño de cada celda del tablero.
+    grosor_linea(int): grosor de las lineas de la cuadricula.
+    color_linea(tuple): tupla que muestra el color de las lineas.
+    color_celda (tuple): tupla que muestra el color de las celdas.
+    color_oculto(tuple): tupla que muuestra el color de las celdas vacias.
+    fuente_num(font): fuente para mostarr los numeros en el tablero
+
+    '''
+    
     for fila in range(9):
         for columna in range(9):
             valor = tablero[fila][columna]
