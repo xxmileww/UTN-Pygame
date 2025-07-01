@@ -192,8 +192,8 @@ def calcular_puntaje(dificultad: str, errores: int, tiempo: int)-> int:
     return max(0, int(puntaje))
     
 
-def dibujar_sudoku(pantalla: Surface, tablero: list, borde_x:int, borde_y: int ,tamaño_celda: int, grosor_linea:int, color_linea: tuple, color_celda: tuple, color_oculto: tuple,  fuente_num: Font):
-        '''
+def dibujar_sudoku(pantalla: Surface, tablero: list, borde_x: int, borde_y: int, tamaño_celda: int, grosor_linea: int, color_linea: tuple, color_celda: tuple, color_oculto: tuple, fuente_num: Font, celda_seleccionada=None):
+    '''
     Dibuja el tablero de Sudoku en pygame.
     
     Parámetros:\n
@@ -210,30 +210,34 @@ def dibujar_sudoku(pantalla: Surface, tablero: list, borde_x:int, borde_y: int ,
     fuente_num(font): fuente para mostarr los numeros en el tablero
 
     '''
-    
-        for fila in range(9):
-            for columna in range(9):
-                valor = tablero[fila][columna]
 
-            x= borde_x + (columna * tamaño_celda)
+    for fila in range(9):
+        for columna in range(9):
+            valor = tablero[fila][columna]
+            x = borde_x + (columna * tamaño_celda)
             y = borde_y + (fila * tamaño_celda)
+            borde_celda = pygame.Rect(x, y, tamaño_celda, tamaño_celda)
 
-            borde_celda= pygame.Rect(x, y, tamaño_celda, tamaño_celda)
-
-            if valor == "":
+            if celda_seleccionada == (fila, columna):
+                pygame.draw.rect(pantalla, (173, 216, 230), borde_celda)
+            elif valor == "" or valor is None:
                 pygame.draw.rect(pantalla, color_oculto, borde_celda)
             else:
-                pygame.draw.rect(pantalla, (230,230,230), borde_celda)
+                pygame.draw.rect(pantalla, (230, 230, 230), borde_celda)
+            if valor != "" and valor is not None:
                 texto_superficie = fuente_num.render(str(valor), True, color_celda)
                 texto_rect = texto_superficie.get_rect(center=borde_celda.center)
                 pantalla.blit(texto_superficie, texto_rect)
 
-        for i in range(10): 
-            if i % 3 == 0:
-                grosor_linea = 3 
-            else:
-                grosor_linea = 1
-        pygame.draw.line(pantalla, color_linea, (borde_x, borde_y + i * tamaño_celda),
-                         (borde_x + 9 * tamaño_celda, borde_y + i * tamaño_celda), grosor_linea)
-        pygame.draw.line(pantalla, color_linea, (borde_x + i * tamaño_celda, borde_y),
-                         (borde_x + i * tamaño_celda, borde_y + 9 * tamaño_celda), grosor_linea)
+    for i in range(10):
+        grosor = 3 if i % 3 == 0 else 1
+        pygame.draw.line(pantalla, color_linea,
+                         (borde_x, borde_y + i * tamaño_celda),
+                         (borde_x + 9 * tamaño_celda, borde_y + i * tamaño_celda),
+                         grosor)
+        pygame.draw.line(pantalla, color_linea,
+                         (borde_x + i * tamaño_celda, borde_y),
+                         (borde_x + i * tamaño_celda, borde_y + 9 * tamaño_celda),
+                         grosor) 
+
+
