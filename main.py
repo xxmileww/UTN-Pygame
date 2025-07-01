@@ -26,6 +26,8 @@ fuente_aviso = pygame.font.SysFont("Arial Rounded MT", 30)
 fuente_timer = pygame.font.SysFont("Arial Rounded MT", 50)
 fuente_numero = pygame.font.SysFont("Arial Rounded MT", 40)
 
+celda_seleccionada = None
+
 pantalla = pygame.display.set_mode((ancho_ventana, alto_ventana))
 
 pygame.display.set_caption("Sudoku")
@@ -71,13 +73,17 @@ color_blanco =(255,255,255)
 color_negro = (0, 0, 0)
 color_gris = (100, 100, 100)
 color_azul = (70, 70 ,120)
-color_celda_vacia= (245, 245, 245)
+color_celda_vacia = (245, 245, 245)
 
 tamaño_celda = 40
 grosor_borde = 1
-tamaño_tablero = tamaño_celda * 9
-x_tablero = (ancho_ventana - tamaño_tablero) //4
-y_tablero = (alto_ventana - tamaño_tablero) //2
+
+celda_seleccionada = None
+
+ganador = False
+nombre_usuario = ""
+puede_escribir = False
+error_nombre = ""
 
 base_tablero = []
 tablero_juego = []
@@ -248,13 +254,14 @@ while ejecutando:
         texto_volver = fuente_botones.render("Volver", True, color_fuente)
         pantalla.blit(texto_volver, texto_volver.get_rect(center=boton_volver.center))
 
-    
     elif pantalla_actual == 5:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+
             if evento.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = evento.pos
                 if boton_volver.collidepoint(evento.pos):
                     pantalla_actual = 1
                 elif boton_reinicio.collidepoint(evento.pos):
@@ -267,18 +274,18 @@ while ejecutando:
                         col = (mouse_x - x_tablero) // tamaño_celda
                         fila = (mouse_y - y_tablero) // tamaño_celda
                         celda_seleccionada = (fila, col)
-                    
+
+
             if evento.type == evento_timer:
                 tiempo_juego += 1
-
         tamaño_celda = int(alto_ventana * 0.08)
         tamaño_tablero = tamaño_celda * 9
 
         x_tablero = (ancho_ventana - tamaño_tablero) // 2 - int(ancho_ventana * 0.20) 
         y_tablero = (alto_ventana - tamaño_tablero) // 2 - int(alto_ventana * 0.06)
 
-        dibujar_sudoku( pantalla,tablero_juego, x_tablero, y_tablero, tamaño_celda, grosor_borde, color_negro, color_negro, color_celda_vacia, fuente_numero) 
-
+        dibujar_sudoku( pantalla,tablero_juego, x_tablero, y_tablero, tamaño_celda, grosor_borde, color_negro, color_negro, color_celda_vacia, fuente_numero, celda_seleccionada)
+        
         minutos = tiempo_juego // 60
         segundos = tiempo_juego % 60
         texto_timer = fuente_timer.render(f"Tiempo: {minutos:02}:{segundos:02}", True, color_fuente)
@@ -297,6 +304,12 @@ while ejecutando:
         texto_reinicio = fuente_botones.render("Reiniciar juego", True, color_fuente)
         pantalla.blit(texto_reinicio, texto_reinicio.get_rect(center=boton_reinicio.center))
 
+
+    
+
+
+    pygame.display.flip()
+    
 
     pygame.display.flip()
     
