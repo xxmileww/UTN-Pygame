@@ -117,7 +117,7 @@ while ejecutando:
                 elif rec_salir.collidepoint(evento.pos):
                     pygame.quit()
                     quit()
-             if evento.type == pygame.KEYDOWN:
+            if evento.type == pygame.KEYDOWN:
                 if puede_escribir:
                     if evento.key == pygame.K_RETURN: 
                         puede_escribir = False
