@@ -117,6 +117,15 @@ while ejecutando:
                 elif rec_salir.collidepoint(evento.pos):
                     pygame.quit()
                     quit()
+             if evento.type == pygame.KEYDOWN:
+                if puede_escribir:
+                    if evento.key == pygame.K_RETURN: 
+                        puede_escribir = False
+                    elif evento.key == pygame.K_BACKSPACE: 
+                        nombre_usuario = nombre_usuario[:-1]
+                    else:
+                        if len(nombre_usuario) < 15: 
+                            nombre_usuario += evento.unicode 
             
         boton_jugar = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.40, ancho_ventana * 0.3, alto_ventana * 0.1)
         boton_ajustes = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.55, ancho_ventana * 0.3, alto_ventana * 0.1)
@@ -136,6 +145,17 @@ while ejecutando:
 
         rect_titulo = titulo.get_rect(center=(ancho_ventana // 2, alto_ventana * 0.07 + titulo.get_height() // 2))
         pantalla.blit(titulo, rect_titulo)
+
+        pygame.draw.rect(pantalla, color_botones, input_caja, border_radius=10)
+        pygame.draw.rect(pantalla, color_negro, input_caja, 3, border_radius=10) 
+        
+        texto_nombre_usuario = fuente_botones.render(nombre_usuario if nombre_usuario else "Ingresa tu nombre: ", True, color_azul)
+        pantalla.blit(texto_nombre_usuario, (input_caja.x + 10, input_caja.y + 10))
+
+        if error_nombre:
+            texto_error = fuente_aviso.render(error_nombre, True, (255, 0, 0)) 
+            pantalla.blit(texto_error, (input_caja.x, input_caja.y - 30)) 
+
         pantalla.blit(jugar, jugar.get_rect(center=boton_jugar.center))
         pantalla.blit(ajustes, ajustes.get_rect(center=boton_ajustes.center))
         pantalla.blit(puntaje, puntaje.get_rect(center=boton_puntaje.center))
