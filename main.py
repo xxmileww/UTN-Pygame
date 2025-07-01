@@ -13,7 +13,7 @@ ancho_ventana = int(ancho_pantalla * 0.8)
 alto_ventana = int(alto_pantalla * 0.8)
 
 resolucion_automatica = (ancho_ventana, alto_ventana)
-resoluciones = resolucion_automatica,(1280, 720),(1600, 900),(1920, 1080)
+resoluciones = [resolucion_automatica,(1280, 720),(1600, 900),(1920, 1080)]
 indice_resolucion = 0
 
 fondo_imagen = pygame.image.load("fondo.png")
