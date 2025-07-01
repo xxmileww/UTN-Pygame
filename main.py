@@ -305,7 +305,6 @@ while ejecutando:
         pantalla.blit(texto_reinicio, texto_reinicio.get_rect(center=boton_reinicio.center))
 
 
-    
 
 
     pygame.display.flip()
