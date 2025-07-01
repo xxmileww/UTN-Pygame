@@ -307,7 +307,7 @@ while ejecutando:
 
 
 
-    pygame.display.flip()
+ 
     
 
     pygame.display.flip()
