@@ -211,9 +211,9 @@ def dibujar_sudoku(pantalla: Surface, tablero: list, borde_x:int, borde_y: int ,
 
     '''
     
-    for fila in range(9):
-        for columna in range(9):
-            valor = tablero[fila][columna]
+        for fila in range(9):
+            for columna in range(9):
+                valor = tablero[fila][columna]
 
             x= borde_x + (columna * tamaño_celda)
             y = borde_y + (fila * tamaño_celda)
@@ -228,11 +228,11 @@ def dibujar_sudoku(pantalla: Surface, tablero: list, borde_x:int, borde_y: int ,
                 texto_rect = texto_superficie.get_rect(center=borde_celda.center)
                 pantalla.blit(texto_superficie, texto_rect)
 
-    for i in range(10): 
-        if i % 3 == 0:
-            grosor_linea = 3 
-        else:
-            grosor_linea = 1
+        for i in range(10): 
+            if i % 3 == 0:
+                grosor_linea = 3 
+            else:
+                grosor_linea = 1
         pygame.draw.line(pantalla, color_linea, (borde_x, borde_y + i * tamaño_celda),
                          (borde_x + 9 * tamaño_celda, borde_y + i * tamaño_celda), grosor_linea)
         pygame.draw.line(pantalla, color_linea, (borde_x + i * tamaño_celda, borde_y),
