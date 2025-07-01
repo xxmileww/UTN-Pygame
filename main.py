@@ -26,8 +26,6 @@ fuente_aviso = pygame.font.SysFont("Arial Rounded MT", 30)
 fuente_timer = pygame.font.SysFont("Arial Rounded MT", 50)
 fuente_numero = pygame.font.SysFont("Arial Rounded MT", 40)
 
-celda_seleccionada = None
-
 pantalla = pygame.display.set_mode((ancho_ventana, alto_ventana))
 
 pygame.display.set_caption("Sudoku")
