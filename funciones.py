@@ -191,24 +191,6 @@ def calcular_puntaje(dificultad: str, errores: int, tiempo: int)-> int:
     puntaje = base - resta_errores - resta_tiempo
     return max(0, int(puntaje))
     
-def centrar_texto(boton: Rect, texto_renderizado: Surface)-> tuple:
-    '''
-    Calcula la posición (x, y) para centrar textos dentro de un botón.
-
-    Parámetros:\n
-    boton (Rect): Rectángulo del botón donde se quiere centrar el texto.
-    texto_renderizado (Surface): Superficie que contiene el texto con una fuente.
-
-    Retorna:\n
-    tuple: 
-    Una tupla con las coordenadas (x, y) para posicionar el texto centrado en el botón
-    '''
-    ancho_txt = texto_renderizado.get_width()
-    alto_txt = texto_renderizado.get_height()
-    x_texto = boton.x + (boton.width - ancho_txt) // 2
-    y_texto = boton.y + (boton.height - alto_txt) // 2
-    return x_texto, y_texto
-
 
 def dibujar_sudoku(pantalla: Surface, tablero: list, borde_x:int, borde_y: int ,tamaño_celda: int, grosor_linea:int, color_linea: tuple, color_celda: tuple, color_oculto: tuple,  fuente_num: Font):
     """
