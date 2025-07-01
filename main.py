@@ -260,7 +260,14 @@ while ejecutando:
                 elif boton_reinicio.collidepoint(evento.pos):
                     tablero_juego = ocultar_numeros(base_tablero, dificultad_actual)
                     tiempo_juego = 0
-                    errores = 0                          
+                    errores = 0
+                    celda_seleccionada = None
+                else:
+                    if x_tablero <= mouse_x < x_tablero + tamaño_tablero and y_tablero <= mouse_y < y_tablero + tamaño_tablero:
+                        col = (mouse_x - x_tablero) // tamaño_celda
+                        fila = (mouse_y - y_tablero) // tamaño_celda
+                        celda_seleccionada = (fila, col)
+                    
             if evento.type == evento_timer:
                 tiempo_juego += 1
 
