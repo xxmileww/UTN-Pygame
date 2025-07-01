@@ -108,10 +108,10 @@ while ejecutando:
                 elif rec_salir.collidepoint(evento.pos):
                     pygame.quit()
                     quit()
-        boton_jugar = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.25, ancho_ventana * 0.3, alto_ventana * 0.1)
-        boton_ajustes = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.40, ancho_ventana * 0.3, alto_ventana * 0.1)
-        boton_puntaje = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.55, ancho_ventana * 0.3, alto_ventana * 0.1)
-        boton_salir = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.70, ancho_ventana * 0.3, alto_ventana * 0.1)
+        boton_jugar = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.40, ancho_ventana * 0.3, alto_ventana * 0.1)
+        boton_ajustes = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.55, ancho_ventana * 0.3, alto_ventana * 0.1)
+        boton_puntaje = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.70, ancho_ventana * 0.3, alto_ventana * 0.1)
+        boton_salir = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.85, ancho_ventana * 0.3, alto_ventana * 0.1)
 
         rec_jugar = pygame.draw.rect(pantalla, color_botones, boton_jugar, border_radius = 25) 
         rec_ajustes = pygame.draw.rect(pantalla, color_botones, boton_ajustes, border_radius = 25 ) 
