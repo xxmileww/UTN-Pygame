@@ -92,13 +92,24 @@ ejecutando = True
 while ejecutando:
     pantalla.blit(fondo_imagen, (0, 0))
     if pantalla_actual == 1:
+        input_caja= pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.30, ancho_ventana * 0.3, alto_ventana * 0.07)
+        color_activo = color_azul 
+        color_inactivo = color_celda_vacia
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT: 
                 pygame.quit()
                 quit()
             if evento.type == pygame.MOUSEBUTTONDOWN:
+                if input_caja.collidepoint(evento.pos):
+                    puede_escribir = True
+                else:
+                    puede_escribir = False
                 if rec_jugar.collidepoint(evento.pos):
-                    pantalla_actual = 2
+                    if nombre_usuario.strip() != "":
+                        pantalla_actual = 2
+                        error_nombre = ""
+                    else:
+                        error_nombre = "Por favor, ingrese su nombre para jugar."
                 elif rec_ajustes.collidepoint(evento.pos):
                     pantalla_actual = 3
                 elif rec_puntaje.collidepoint(evento.pos):
@@ -106,6 +117,7 @@ while ejecutando:
                 elif rec_salir.collidepoint(evento.pos):
                     pygame.quit()
                     quit()
+            
         boton_jugar = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.40, ancho_ventana * 0.3, alto_ventana * 0.1)
         boton_ajustes = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.55, ancho_ventana * 0.3, alto_ventana * 0.1)
         boton_puntaje = pygame.Rect(ancho_ventana * 0.35, alto_ventana * 0.70, ancho_ventana * 0.3, alto_ventana * 0.1)
